@@ -14,7 +14,6 @@ class HighScoresController < ApplicationController
                    editPath: edit_high_score_path(high_score)
                  )
                },
-             notice: notice,
              createPath: new_high_score_path
            }
   end
@@ -28,7 +27,6 @@ class HighScoresController < ApplicationController
                  path: high_score_path(@high_score),
                  editPath: edit_high_score_path(@high_score)
                ),
-             notice: notice,
              indexPath: high_scores_path
            }
   end

@@ -1,5 +1,5 @@
 import React from "react";
-import { InertiaLink } from "@inertiajs/inertia-react";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 
 interface Props {
   highScore: {
@@ -9,11 +9,12 @@ interface Props {
     path: string;
     editPath: string;
   };
-  notice?: string;
   indexPath: string;
 }
 
-export default function({ highScore, notice, indexPath }: Props) {
+export default function({ highScore, indexPath }: Props) {
+  const { notice } = usePage();
+
   return (
     <>
       {notice && <p id="notice">{notice}</p>}

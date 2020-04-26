@@ -1,6 +1,6 @@
 import React from "react";
 import { Inertia } from "@inertiajs/inertia";
-import { InertiaLink } from "@inertiajs/inertia-react";
+import { InertiaLink, usePage } from "@inertiajs/inertia-react";
 
 interface Props {
   highScores: Array<{
@@ -10,11 +10,12 @@ interface Props {
     path: string;
     editPath: string;
   }>;
-  notice?: string;
   createPath: string;
 }
 
-export default function({ highScores, notice, createPath }: Props) {
+export default function({ highScores, createPath }: Props) {
+  const { notice } = usePage();
+
   function handleDestroy(e) {
     e.preventDefault();
     if (confirm("Are you sure?")) {
