@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   after_action :set_xsrf_token_cookie
 
-  inertia_share notice: -> { notice }
+  inertia_share { { notice: notice } if notice.present? }
 
   private
 
