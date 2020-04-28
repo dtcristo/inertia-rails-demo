@@ -33,27 +33,14 @@ class HighScoresController < ApplicationController
 
   # GET /high_scores/new
   def new
-    @high_score = HighScore.new
+    @high_score ||= HighScore.new
 
-    render inertia: 'high_score/new',
-           props: {
-             highScore: @high_score.as_json(only: %i[game score]),
-             createPath: high_scores_path,
-             indexPath: high_scores_path
-           }
+    render_new
   end
 
   # GET /high_scores/1/edit
   def edit
-    render inertia: 'high_score/edit',
-           props: {
-             highScore:
-               @high_score.as_json(only: %i[id game score]).merge(
-                 path: high_score_path(@high_score),
-                 updatePath: high_score_path(@high_score)
-               ),
-             indexPath: high_scores_path
-           }
+    render_edit
   end
 
   # POST /high_scores
@@ -63,7 +50,7 @@ class HighScoresController < ApplicationController
     if @high_score.save
       redirect_to @high_score, notice: 'High score was successfully created.'
     else
-      render :new
+      render_new
     end
   end
 
@@ -72,7 +59,7 @@ class HighScoresController < ApplicationController
     if @high_score.update(high_score_params)
       redirect_to @high_score, notice: 'High score was successfully updated.'
     else
-      render :edit
+      render_edit
     end
   end
 
@@ -84,6 +71,31 @@ class HighScoresController < ApplicationController
   end
 
   private
+
+  def render_new
+    render inertia: 'high_score/new',
+           props: {
+             highScore:
+               @high_score.as_json(only: %i[game score]).merge(
+                 errors: @high_score.errors.as_json
+               ),
+             createPath: high_scores_path,
+             indexPath: high_scores_path
+           }
+  end
+
+  def render_edit
+    render inertia: 'high_score/edit',
+           props: {
+             highScore:
+               @high_score.as_json(only: %i[id game score]).merge(
+                 path: high_score_path(@high_score),
+                 updatePath: high_score_path(@high_score),
+                 errors: @high_score.errors.as_json
+               ),
+             indexPath: high_scores_path
+           }
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_high_score

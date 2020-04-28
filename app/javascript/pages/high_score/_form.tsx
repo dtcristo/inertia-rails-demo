@@ -6,6 +6,9 @@ interface Props {
     id?: number;
     game: string;
     score: number;
+    errors: {
+      [key: string]: string[];
+    };
   };
   path: string;
   method: "post" | "patch";
@@ -33,6 +36,14 @@ export default function ({ highScore, path, method }: Props) {
 
   const update = false;
 
+  const ErrorWrapper: React.FC<{ field: string }> = ({ field, children }) => {
+    if (highScore.errors[field] != undefined) {
+      return <div className="field_with_errors">{children}</div>;
+    } else {
+      return <>{children}</>;
+    }
+  };
+
   return (
     <>
       {/* <% if high_score.errors.any? %>
@@ -48,23 +59,31 @@ export default function ({ highScore, path, method }: Props) {
   <% end %> */}
       <form onSubmit={handleSubmit}>
         <div className="field">
-          <label htmlFor="game">Game:</label>
-          <input
-            id="game"
-            type="text"
-            value={values.game}
-            onChange={handleChange}
-          />
+          <ErrorWrapper field="game">
+            <label htmlFor="game">Game:</label>
+          </ErrorWrapper>
+          <ErrorWrapper field="game">
+            <input
+              id="game"
+              type="text"
+              value={values.game}
+              onChange={handleChange}
+            />
+          </ErrorWrapper>
         </div>
 
         <div className="field">
-          <label htmlFor="score">Score:</label>
-          <input
-            id="score"
-            type="number"
-            value={values.score}
-            onChange={handleChange}
-          />
+          <ErrorWrapper field="score">
+            <label htmlFor="score">Score:</label>
+          </ErrorWrapper>
+          <ErrorWrapper field="score">
+            <input
+              id="score"
+              type="number"
+              value={values.score}
+              onChange={handleChange}
+            />
+          </ErrorWrapper>
         </div>
 
         <div className="actions">

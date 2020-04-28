@@ -9,6 +9,9 @@ interface Props {
     score: number;
     path: string;
     updatePath: string;
+    errors: {
+      [key: string]: string[];
+    };
   };
   indexPath: string;
 }

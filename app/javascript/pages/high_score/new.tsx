@@ -6,6 +6,9 @@ interface Props {
   highScore: {
     game: string;
     score: number;
+    errors: {
+      [key: string]: string[];
+    };
   };
   createPath: string;
   indexPath: string;
