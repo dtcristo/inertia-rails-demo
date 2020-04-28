@@ -9,18 +9,18 @@ interface Props {
   };
 }
 
-export default function({ highScore }: Props) {
+export default function ({ highScore }: Props) {
   const [values, setValues] = useState({
     game: highScore.game ?? "",
-    score: highScore.score ?? ""
+    score: highScore.score ?? "",
   });
 
   function handleChange(e) {
     const key = e.target.id;
     const value = e.target.value;
-    setValues(values => ({
+    setValues((values) => ({
       ...values,
-      [key]: value
+      [key]: value,
     }));
   }
 

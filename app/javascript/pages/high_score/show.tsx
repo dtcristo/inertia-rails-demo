@@ -12,7 +12,7 @@ interface Props {
   indexPath: string;
 }
 
-export default function({ highScore, indexPath }: Props) {
+export default function ({ highScore, indexPath }: Props) {
   const { notice } = usePage();
 
   return (

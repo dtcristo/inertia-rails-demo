@@ -13,7 +13,7 @@ interface Props {
   createPath: string;
 }
 
-export default function({ highScores, createPath }: Props) {
+export default function ({ highScores, createPath }: Props) {
   const { notice } = usePage();
 
   function handleDestroy(e) {

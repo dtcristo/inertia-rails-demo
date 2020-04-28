@@ -8,7 +8,7 @@ if (app) {
   render(
     <InertiaApp
       initialPage={JSON.parse(app.dataset.page)}
-      resolveComponent={name => require(`./pages/${name}`).default}
+      resolveComponent={(name) => require(`./pages/${name}`).default}
     />,
     app
   );
