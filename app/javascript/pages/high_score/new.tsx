@@ -7,14 +7,15 @@ interface Props {
     game: string;
     score: number;
   };
+  createPath: string;
   indexPath: string;
 }
 
-export default function ({ highScore, indexPath }: Props) {
+export default function ({ highScore, createPath, indexPath }: Props) {
   return (
     <>
       <h1>New High Score</h1>
-      <Form highScore={highScore}></Form>
+      <Form highScore={highScore} path={createPath} method="post"></Form>
       <InertiaLink href={indexPath}>Back</InertiaLink>
     </>
   );

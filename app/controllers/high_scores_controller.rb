@@ -38,6 +38,7 @@ class HighScoresController < ApplicationController
     render inertia: 'high_score/new',
            props: {
              highScore: @high_score.as_json(only: %i[game score]),
+             createPath: high_scores_path,
              indexPath: high_scores_path
            }
   end
@@ -48,7 +49,8 @@ class HighScoresController < ApplicationController
            props: {
              highScore:
                @high_score.as_json(only: %i[id game score]).merge(
-                 path: high_score_path(@high_score)
+                 path: high_score_path(@high_score),
+                 updatePath: high_score_path(@high_score)
                ),
              indexPath: high_scores_path
            }

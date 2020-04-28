@@ -8,6 +8,7 @@ interface Props {
     game: string;
     score: number;
     path: string;
+    updatePath: string;
   };
   indexPath: string;
 }
@@ -16,7 +17,11 @@ export default function ({ highScore, indexPath }: Props) {
   return (
     <>
       <h1>Editing High Score</h1>
-      <Form highScore={highScore}></Form>
+      <Form
+        highScore={highScore}
+        path={highScore.updatePath}
+        method="patch"
+      ></Form>
       <InertiaLink href={highScore.path}>Show</InertiaLink> |{" "}
       <InertiaLink href={indexPath}>Back</InertiaLink>
     </>

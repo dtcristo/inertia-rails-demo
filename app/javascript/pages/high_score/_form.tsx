@@ -7,9 +7,11 @@ interface Props {
     game: string;
     score: number;
   };
+  path: string;
+  method: "post" | "patch";
 }
 
-export default function ({ highScore }: Props) {
+export default function ({ highScore, path, method }: Props) {
   const [values, setValues] = useState({
     game: highScore.game ?? "",
     score: highScore.score ?? "",
@@ -26,7 +28,7 @@ export default function ({ highScore }: Props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    Inertia.post("/high_scores", values);
+    Inertia.visit(path, { method, data: values });
   }
 
   const update = false;
