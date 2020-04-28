@@ -34,8 +34,6 @@ export default function ({ highScore, path, method }: Props) {
     Inertia.visit(path, { method, data: values });
   }
 
-  const update = false;
-
   const ErrorWrapper: React.FC<{ field: string }> = ({ field, children }) => {
     if (highScore.errors[field] != undefined) {
       return <div className="field_with_errors">{children}</div>;
